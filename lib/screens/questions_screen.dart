@@ -71,6 +71,8 @@ class _QuestionsScreenState extends State<QuestionsScreen> {
     }
 
     final question = questions[currentQuestionIndex];
+    final screenWidth = MediaQuery.of(context).size.width;
+    final screenHeight = MediaQuery.of(context).size.height;
 
     return AppScaffold(
       body: SafeArea(
@@ -82,23 +84,23 @@ class _QuestionsScreenState extends State<QuestionsScreen> {
               Text(
                 'Question ${currentQuestionIndex + 1}',
                 style: TextStyle(
-                  fontSize: 16,
+                  fontSize: screenWidth * 0.04,
                   color: Colors.black,
                   fontWeight: FontWeight.bold,
                 ),
               ),
 
-              const SizedBox(height: 12),
+              SizedBox(height: screenHeight * 0.02),
 
               Text(
                 question.question,
-                style: const TextStyle(
-                  fontSize: 23,
+                style: TextStyle(
+                  fontSize: screenWidth * 0.06,
                   fontWeight: FontWeight.bold,
                 ),
               ),
 
-              const SizedBox(height: 24),
+              SizedBox(height: screenHeight * 0.03),
 
               Expanded(
                 child: ListView.builder(
@@ -140,7 +142,7 @@ class _QuestionsScreenState extends State<QuestionsScreen> {
                       currentQuestionIndex == questions.length - 1
                           ? 'Finish Quiz'
                           : 'Next Question',
-                      style: const TextStyle(fontSize: 16),
+                      style: TextStyle(fontSize: screenWidth * 0.04),
                     ),
                   ),
                 ),

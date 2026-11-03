@@ -21,6 +21,8 @@ class ResultScreen extends StatelessWidget {
     final percentage = totalQuestions == 0
         ? 0.0
         : correctAnswers / totalQuestions * 100;
+    final screenWidth = MediaQuery.of(context).size.width;
+    final screenHeight = MediaQuery.of(context).size.height;
 
     return AppScaffold(
       body: SafeArea(
@@ -32,32 +34,32 @@ class ResultScreen extends StatelessWidget {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  const SizedBox(height: 12),
+                  SizedBox(height: screenHeight * 0.02),
 
                   Text(
                     'Well done, $playerName!',
-                    style: const TextStyle(fontSize: 18),
+                    style: TextStyle(fontSize: screenWidth * 0.08),
                   ),
 
-                  const SizedBox(height: 8),
+                  SizedBox(height: screenHeight * 0.01),
 
                   Text(
                     quiz.title,
-                    style: TextStyle(fontSize: 16, color: Colors.black),
+                    style: TextStyle(fontSize: screenWidth * 0.05, color: Colors.black),
                     textAlign: TextAlign.center,
                   ),
 
-                  const SizedBox(height: 32),
+                  SizedBox(height: screenHeight * 0.01),
 
                   Text(
                     '${percentage.toStringAsFixed(0)}%',
-                    style: const TextStyle(
-                      fontSize: 64,
+                    style: TextStyle(
+                      fontSize: screenWidth * 0.15,
                       fontWeight: FontWeight.bold,
                     ),
                   ),
 
-                  const SizedBox(height: 24),
+                  SizedBox(height: screenHeight * 0.02),
 
                   Card(
                     child: Padding(
@@ -66,7 +68,7 @@ class ResultScreen extends StatelessWidget {
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           const Icon(Icons.check_circle_outline),
-                          const SizedBox(width: 12),
+                          SizedBox(width: screenWidth * 0.02),
                           Text(
                             '$correctAnswers out of $totalQuestions answers correct',
                             textAlign: TextAlign.center,
@@ -76,7 +78,7 @@ class ResultScreen extends StatelessWidget {
                     ),
                   ),
 
-                  const SizedBox(height: 32),
+                  SizedBox(height: screenHeight * 0.02),
 
                   SizedBox(
                     width: double.infinity,
@@ -84,11 +86,11 @@ class ResultScreen extends StatelessWidget {
                       onPressed: () {
                         Navigator.popUntil(context, (route) => route.isFirst);
                       },
-                      child: const Padding(
+                      child: Padding(
                         padding: EdgeInsets.all(14),
                         child: Text(
                           'Back to Home',
-                          style: TextStyle(fontSize: 16),
+                          style: TextStyle(fontSize: screenWidth * 0.04),
                         ),
                       ),
                     ),

@@ -63,9 +63,29 @@ const List<QuizData> quizList = [
     imagePath: 'assets/images/random.jpg',
     questions: [
       QuizQuestion(
-        question: 'Which planet is known as the Red Planet?',
-        options: ['Venus', 'Mars', 'Jupiter', 'Saturn'],
+        question: 'Makanan yang dianggap aneh sama orang luar?',
+        options: ['Martabak', 'Sate Padang', 'Rendang', 'Ayam Pop'],
+        correctAnswerIndex: 0,
+      ),
+      QuizQuestion(
+        question: 'Berapa warna di pelangi?',
+        options: ['6', '7', '8', '9'],
         correctAnswerIndex: 1,
+      ),
+      QuizQuestion(
+        question: 'Berapa menit dalam sehari?',
+        options: ['1220', '1800', '1440', '2400'],
+        correctAnswerIndex: 2,
+      ),
+      QuizQuestion(
+        question: 'Banyak planet dalam tata surya?',
+        options: ['5', '6', '7', '8'],
+        correctAnswerIndex: 3,
+      ),
+      QuizQuestion(
+        question: 'Mana yang tidak akan pernah basi dibawah ini?',
+        options: ['Madu', 'Susu', 'Cokelat', 'Jus'],
+        correctAnswerIndex: 0,
       ),
     ],
   ),

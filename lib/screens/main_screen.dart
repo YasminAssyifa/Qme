@@ -16,7 +16,7 @@ class MainScreen extends StatelessWidget {
       body: SafeArea(
         child: Column(
           children: [
-            const SizedBox(height: 32),
+            SizedBox(height: screenHeight * 0.05),
 
             Center(
               child: Text(
@@ -29,13 +29,13 @@ class MainScreen extends StatelessWidget {
               ),
             ),
 
-            const SizedBox(height: 24),
+            SizedBox(height: screenHeight * 0.03),
 
             Expanded(
               child: ConstrainedBox(
                 constraints: BoxConstraints(maxWidth: screenWidth * 0.9),
                 child: ListView.builder(
-                  padding: EdgeInsets.symmetric(horizontal: screenWidth * 0.05),
+                  padding: EdgeInsets.symmetric(horizontal: screenWidth * 0.03),
                   itemCount: quizList.length,
                   itemBuilder: (context, index) {
                     final quiz = quizList[index];

@@ -10,6 +10,9 @@ class QuizCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final screenWidth = MediaQuery.of(context).size.width;
+    final screenHeight = MediaQuery.of(context).size.height;
+
     return Card(
       elevation: 0,
       shadowColor: Colors.transparent,
@@ -26,24 +29,24 @@ class QuizCard extends StatelessWidget {
                   children: [
                     Text(
                       quiz.title,
-                      style: const TextStyle(
-                        fontSize: 18,
+                      style: TextStyle(
+                        fontSize: screenWidth * 0.045,
                         fontWeight: FontWeight.bold,
                       ),
                     ),
-                    const SizedBox(height: 8),
+                    SizedBox(height: screenHeight * 0.01),
                     Text(
                       quiz.description,
                       style: TextStyle(
-                        fontSize: 14,
+                        fontSize: screenWidth * 0.035,
                         color: const Color.fromARGB(255, 0, 0, 0),
                       ),
                     ),
-                    const SizedBox(height: 8),
+                    SizedBox(height: screenHeight * 0.01),
                     Text(
                       '${quiz.questions.length} Questions',
-                      style: const TextStyle(
-                        fontSize: 12,
+                      style: TextStyle(
+                        fontSize: screenWidth * 0.03,
                         fontWeight: FontWeight.w500,
                       ),
                     ),

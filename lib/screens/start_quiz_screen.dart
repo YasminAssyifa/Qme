@@ -27,7 +27,12 @@ class _StartQuizScreenState extends State<StartQuizScreen> {
 
     if (playerName.isEmpty) {
       ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(content: Text('Please enter your name first.')),
+        const SnackBar(
+          content: Text('Please enter your name first.'),
+          backgroundColor: Colors.red,
+          behavior: SnackBarBehavior.floating,
+          duration: Duration(seconds: 2),
+        ),
       );
       return;
     }
@@ -69,8 +74,8 @@ class _StartQuizScreenState extends State<StartQuizScreen> {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    const SizedBox(height: 32),
-                    
+                    SizedBox(height: screenHeight * 0.02),
+
                     Center(
                       child: Image.asset(
                         quiz.imagePath!,
@@ -79,24 +84,25 @@ class _StartQuizScreenState extends State<StartQuizScreen> {
                         fit: BoxFit.contain,
                       ),
                     ),
-                    const SizedBox(height: 24),
+
+                    SizedBox(height: screenHeight * 0.02),
 
                     Text(
                       quiz.title,
-                      style: const TextStyle(
-                        fontSize: 26,
+                      style: TextStyle(
+                        fontSize: screenWidth * 0.08,
                         fontWeight: FontWeight.bold,
                       ),
                     ),
 
-                    const SizedBox(height: 12),
+                    SizedBox(height: screenHeight * 0.01),
 
                     Text(
                       quiz.description,
-                      style: const TextStyle(fontSize: 16),
+                      style: TextStyle(fontSize: screenWidth * 0.04),
                     ),
 
-                    const SizedBox(height: 16),
+                    SizedBox(height: screenHeight * 0.02),
 
                     Row(
                       children: [
@@ -106,7 +112,7 @@ class _StartQuizScreenState extends State<StartQuizScreen> {
                       ],
                     ),
 
-                    const SizedBox(height: 12),
+                    SizedBox(height: screenHeight * 0.02),
 
                     TextField(
                       controller: _nameController,
@@ -121,21 +127,22 @@ class _StartQuizScreenState extends State<StartQuizScreen> {
                       onSubmitted: (_) => _startQuiz(),
                     ),
 
-                    const SizedBox(height: 24),
+                    SizedBox(height: screenHeight * 0.02),
 
                     SizedBox(
                       width: double.infinity,
                       child: ElevatedButton(
                         onPressed: _startQuiz,
-                        child: const Padding(
-                          padding: EdgeInsets.all(14),
+                        child: Padding(
+                          padding: const EdgeInsets.all(14),
                           child: Text(
                             'Start Quiz',
-                            style: TextStyle(fontSize: 16),
+                            style: TextStyle(fontSize: screenWidth * 0.04),
                           ),
                         ),
                       ),
                     ),
+                    SizedBox(height: screenHeight * 0.15),
                   ],
                 ),
               ),

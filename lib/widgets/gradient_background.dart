@@ -9,7 +9,7 @@ class GradientBackground extends StatelessWidget {
     return Container(
       decoration: const BoxDecoration(
         gradient: LinearGradient(
-          colors: [Color.fromARGB(255, 116, 60, 207), Color.fromARGB(255, 243, 238, 161)],
+          colors: [Color.fromARGB(255, 156, 210, 241), Color.fromARGB(255, 252, 184, 224)],
           begin: Alignment.topLeft,
           end: Alignment.bottomRight,
         ),
