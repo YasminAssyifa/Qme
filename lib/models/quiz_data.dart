@@ -1,4 +1,3 @@
-
 class QuizQuestion {
   final String question;
   final List<String> options;
@@ -15,11 +14,13 @@ class QuizData {
   final String title;
   final String description;
   final List<QuizQuestion> questions;
+  final String? imagePath;
 
   const QuizData({
     required this.title,
     required this.description,
     required this.questions,
+    this.imagePath,
   });
 }
 
@@ -27,6 +28,7 @@ const List<QuizData> quizList = [
   QuizData(
     title: 'Quiz Matematika',
     description: 'Test your mathematical knowledge.',
+    imagePath: 'assets/images/math.jpg',
     questions: [
       QuizQuestion(
         question: 'What is 5 + 3?',
@@ -58,6 +60,7 @@ const List<QuizData> quizList = [
   QuizData(
     title: 'Fun Quiz',
     description: 'Random Fun Question, Have Fun!',
+    imagePath: 'assets/images/random.jpg',
     questions: [
       QuizQuestion(
         question: 'Which planet is known as the Red Planet?',

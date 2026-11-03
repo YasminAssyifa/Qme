@@ -1,5 +1,7 @@
-
 import 'package:flutter/material.dart';
+import 'package:qme/screens/start_quiz_screen.dart';
+import 'package:qme/widgets/app_scaffold.dart';
+
 import '../models/quiz_data.dart';
 import '../widgets/quiz_card.dart';
 
@@ -10,7 +12,7 @@ class MainScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     final screenWidth = MediaQuery.of(context).size.width;
     final screenHeight = MediaQuery.of(context).size.height;
-    return Scaffold(
+    return AppScaffold(
       body: SafeArea(
         child: Column(
           children: [
@@ -20,9 +22,9 @@ class MainScreen extends StatelessWidget {
               child: Text(
                 'Qme!',
                 style: TextStyle(
-                  fontSize: screenWidth * 0.03,
+                  fontSize: screenHeight * 0.1,
                   fontWeight: FontWeight.bold,
-                  letterSpacing: 3,
+                  letterSpacing: 2,
                 ),
               ),
             ),
@@ -30,21 +32,27 @@ class MainScreen extends StatelessWidget {
             const SizedBox(height: 24),
 
             Expanded(
-              child: ListView.builder(
-                padding: const EdgeInsets.symmetric(
-                  horizontal: 16,
-                ),
-                itemCount: quizList.length,
-                itemBuilder: (context, index) {
-                  final quiz = quizList[index];
+              child: ConstrainedBox(
+                constraints: BoxConstraints(maxWidth: screenWidth * 0.9),
+                child: ListView.builder(
+                  padding: EdgeInsets.symmetric(horizontal: screenWidth * 0.05),
+                  itemCount: quizList.length,
+                  itemBuilder: (context, index) {
+                    final quiz = quizList[index];
 
-                  return QuizCard(
-                    quiz: quiz,
-                    onTap: () {
-                      // Navigate to the quiz screen later.
-                    },
-                  );
-                },
+                    return QuizCard(
+                      quiz: quiz,
+                      onTap: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => StartQuizScreen(quiz: quiz),
+                          ),
+                        );
+                      },
+                    );
+                  },
+                ),
               ),
             ),
           ],
