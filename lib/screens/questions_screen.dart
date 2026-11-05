@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:qme/widgets/app_scaffold.dart';
 import '../models/quiz_data.dart';
@@ -20,32 +19,30 @@ class QuestionsScreen extends StatefulWidget {
 
 class _QuestionsScreenState extends State<QuestionsScreen> {
   int currentQuestionIndex = 0;
-  int correctAnswers = 0;
+  final Map<int, int> answers = {};
   int? selectedAnswerIndex;
 
   List<QuizQuestion> get questions => widget.quiz.questions;
 
   void _submitAnswer() {
     if (selectedAnswerIndex == null) {
-      ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(
-          content: Text('Please select an answer.'),
-        ),
-      );
+      ScaffoldMessenger.of(
+        context,
+      ).showSnackBar(const SnackBar(content: Text('Please select an answer.')));
       return;
     }
 
-    if (selectedAnswerIndex ==
-        questions[currentQuestionIndex].correctAnswerIndex) {
-      correctAnswers++;
-    }
+    answers[currentQuestionIndex] = selectedAnswerIndex!;
 
     if (currentQuestionIndex < questions.length - 1) {
       setState(() {
         currentQuestionIndex++;
-        selectedAnswerIndex = null;
+        selectedAnswerIndex = answers[currentQuestionIndex];
       });
     } else {
+      final correctAnswers = answers.entries.where((entry) {
+        return entry.value == questions[entry.key].correctAnswerIndex;
+      }).length;
       Navigator.pushReplacement(
         context,
         MaterialPageRoute(
@@ -64,9 +61,7 @@ class _QuestionsScreenState extends State<QuestionsScreen> {
     if (questions.isEmpty) {
       return Scaffold(
         appBar: AppBar(title: const Text('Quiz')),
-        body: const Center(
-          child: Text('This quiz has no questions yet.'),
-        ),
+        body: const Center(child: Text('This quiz has no questions yet.')),
       );
     }
 
@@ -106,8 +101,7 @@ class _QuestionsScreenState extends State<QuestionsScreen> {
                 child: ListView.builder(
                   itemCount: question.options.length,
                   itemBuilder: (context, index) {
-                    final isSelected =
-                        selectedAnswerIndex == index;
+                    final isSelected = selectedAnswerIndex == index;
 
                     return Card(
                       margin: const EdgeInsets.only(bottom: 12),
@@ -118,7 +112,8 @@ class _QuestionsScreenState extends State<QuestionsScreen> {
                             selectedAnswerIndex = index;
                           });
                         },
-                        title: Text(question.options[index]),
+                        title: Text(question.options[index],
+                        style: TextStyle(fontSize: screenWidth * 0.04)),
                         trailing: isSelected
                             ? const Icon(Icons.check_circle)
                             : null,
@@ -132,20 +127,42 @@ class _QuestionsScreenState extends State<QuestionsScreen> {
                 ),
               ),
 
-              SizedBox(
-                width: double.infinity,
-                child: ElevatedButton(
-                  onPressed: _submitAnswer,
-                  child: Padding(
-                    padding: const EdgeInsets.all(14),
-                    child: Text(
-                      currentQuestionIndex == questions.length - 1
-                          ? 'Finish Quiz'
-                          : 'Next Question',
-                      style: TextStyle(fontSize: screenWidth * 0.04),
+              Row(
+                children: [
+                  Expanded(
+                    child: ElevatedButton(
+                      onPressed: currentQuestionIndex == 0
+                          ? null
+                          : () {
+                              setState(() {
+                                currentQuestionIndex--;
+                                selectedAnswerIndex = answers[currentQuestionIndex];
+                              });
+                            },
+                      child: Padding(
+                        padding: const EdgeInsets.all(14),
+                        child: Text('Back', style: TextStyle(fontSize: screenWidth * 0.04)),
+                      ),
                     ),
                   ),
-                ),
+
+                  SizedBox(width: screenWidth * 0.02),
+
+                  Expanded(
+                    child: ElevatedButton(
+                      onPressed: _submitAnswer,
+                      child: Padding(
+                        padding: const EdgeInsets.all(14),
+                        child: Text(
+                          currentQuestionIndex == questions.length - 1
+                              ? 'Finish Quiz'
+                              : 'Next',
+                          style: TextStyle(fontSize: screenWidth * 0.04),
+                        ),
+                      ),
+                    ),
+                  ),
+                ],
               ),
             ],
           ),
@@ -153,4 +170,4 @@ class _QuestionsScreenState extends State<QuestionsScreen> {
       ),
     );
   }
-}
+} 

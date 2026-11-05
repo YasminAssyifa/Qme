@@ -72,6 +72,7 @@ class ResultScreen extends StatelessWidget {
                           Text(
                             '$correctAnswers out of $totalQuestions answers correct',
                             textAlign: TextAlign.center,
+                            style: TextStyle(fontSize: screenWidth * 0.035)
                           ),
                         ],
                       ),
