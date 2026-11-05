@@ -14,7 +14,7 @@ Fitur fitur yang tersedia ada halaman utama yang berisi kumpulan quiz yang dapat
 
 Aset yang dipakai adalah library icon default bawaan flutter dan stock images public.
 
-Link Screenshot :
+Link Screenshot : https://drive.google.com/drive/folders/15BUxObm2J1F2uAmXRvlEj4SJnBOGnc9N
 
 Link Mockup  : https://www.figma.com/design/8YX7UVWifThIgfu6qqthZv/Untitled?node-id=32-4
 
